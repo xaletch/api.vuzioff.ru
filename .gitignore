@@ -1,0 +1,48 @@
+# node
+node_modules
+package-lock.json
+
+# nginx
+nginx
+
+# environment files
+.env
+.env.local
+.env.*.local
+
+# typescript
+dist/
+*.log
+
+# system files
+.DB_Store
+Thumbs.db
+
+# logs
+*.log
+
+# db
+pgdata
+
+# docker
+docker-compose.override.yml
+
+# IDE files
+.vscode/
+.idea/
+
+# mac
+*.DS_Store
+
+# windows
+Thumbs.db
+ehthumbs.db
+
+# linux
+*~
+
+# nginx
+.nginx
+
+# notes
+note.txt
