@@ -22,6 +22,7 @@ User.init({
   access: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    defaultValue: 0,
   },
 }, 
 {

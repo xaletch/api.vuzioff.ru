@@ -4,7 +4,7 @@ import cors from 'cors';
 import connectPostgres from './db';
 
 // routers
-import { orderRouter } from './routes';
+import { authRouter, orderRouter } from './routes';
 
 dotenv.config();
 
@@ -26,6 +26,7 @@ const API_PREFIX = '/api/v1';
 
 // api
 app.use(API_PREFIX, orderRouter);
+app.use(API_PREFIX, authRouter);
 
 connectPostgres();
 

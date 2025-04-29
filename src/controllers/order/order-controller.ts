@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { OrderType } from './types';
 import Orders from '@/models/orders/order-model';
+import { CustomRequest } from '@/types';
 
 class OrderController {
   async create(req: Request, res: Response) {
@@ -40,10 +41,12 @@ class OrderController {
 
   async updateStatus(req: Request, res: Response) {
     try {
+      const { userId } = req as CustomRequest;
+
       const { orderId } = req.params;
       const { status } = req.body;
 
-      const order = await Orders.findOne({ where: { id: orderId } });
+      const order = await Orders.findOne({ where: { id: orderId, userId: userId } });
 
       if (!order) {
         return res.status(404).json({ status: 'error', message: 'Заказ не найден' });
@@ -59,9 +62,11 @@ class OrderController {
     }
   }
 
-  async all(_: Request, res: Response) {
+  async all(req: Request, res: Response) {
     try {
-      const orders = await Orders.findAll();
+      const { userId } = req as CustomRequest;
+      
+      const orders = await Orders.findAll({ where: { userId: userId } });
       
       res.status(200).json({ status: 200, orders });
     }

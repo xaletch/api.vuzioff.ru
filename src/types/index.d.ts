@@ -1,4 +1,5 @@
 import { User } from '@/models/user/types';
+import { Request } from "express";
 
 declare global {
   namespace Express {
@@ -7,3 +8,8 @@ declare global {
     }
   }
 } 
+
+export interface CustomRequest extends Request {
+  username: string;
+  userId: number;
+}

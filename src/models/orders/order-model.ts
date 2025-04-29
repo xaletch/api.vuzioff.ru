@@ -46,7 +46,7 @@ Orders.init({
   modelName: 'Orders',
   timestamps: true,
   defaultScope: {
-    attributes: { exclude: ["updatedAt"] }
+    attributes: { exclude: ["updatedAt", "userId"] }
   }
 });
 
