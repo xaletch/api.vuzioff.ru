@@ -1,10 +1,13 @@
 import express, { Application, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import connectPostgres from './db';
+
+// db
+import connectDB from './db';
 
 // routers
 import { authRouter, orderRouter } from './routes';
+import { initWS } from './websocket/connection';
 
 dotenv.config();
 
@@ -28,9 +31,11 @@ const API_PREFIX = '/api/v1';
 app.use(API_PREFIX, orderRouter);
 app.use(API_PREFIX, authRouter);
 
-connectPostgres();
+// connect db
+connectDB();
 
 // WebSocket
+initWS();
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на порту ${PORT}`);

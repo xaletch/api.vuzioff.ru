@@ -1,6 +1,6 @@
 import sequelize from "../config/db";
 
-const connectPostgres = async () => {
+const connectDB = async () => {
   try {
     await sequelize.authenticate();
 
@@ -14,4 +14,4 @@ const connectPostgres = async () => {
   }
 };
 
-export default connectPostgres;
+export default connectDB;

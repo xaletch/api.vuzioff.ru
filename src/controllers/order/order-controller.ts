@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { OrderType } from './types';
 import Orders from '@/models/orders/order-model';
 import { CustomRequest } from '@/types';
+import { sendOrder } from '@/websocket/connection';
 
 class OrderController {
   async create(req: Request, res: Response) {
@@ -29,8 +30,10 @@ class OrderController {
         status: 'pending'
       }
 
-      await Orders.create(newOrder);
-      // io.emit('order-created', order);
+      const order = await Orders.create(newOrder);
+
+      // ws
+      sendOrder('Получен новый заказ', order.dataValues);
 
       res.status(201).json({ status: 'success', message: 'Заказ успешно создан. Ожидайте пока он будет обработан.' });
     }
