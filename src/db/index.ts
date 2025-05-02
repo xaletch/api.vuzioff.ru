@@ -6,7 +6,7 @@ const connectDB = async () => {
 
     console.log('Подключение к PostgreSQL установлено');
 
-    // await sequelize.sync({ alter: true });
+    // await sequelize.sync({ force: true });
   }
   catch (err) {
     console.log(`Не удалось подключиться к ДБ ${err}`);

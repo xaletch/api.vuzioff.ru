@@ -28,7 +28,7 @@ class AuthController {
       return;
     }
 
-    const token = jwt.sign({ access: user.dataValues.access, userId: user.dataValues.id, }, SECRET_KEY, { expiresIn: '10d' });
+    const token = jwt.sign({ access: user.dataValues.access, userId: user.dataValues.id, }, SECRET_KEY, { expiresIn: '1d' });
 
     res.status(200).json({ status: 200, token: token });
    try {
@@ -61,13 +61,13 @@ class AuthController {
 
       const newUser: IUser = {
         username: username,
-        password: password,
+        password: hash,
         access: 0
       };
 
       const createdUser = await User.create(newUser);
 
-      const token = jwt.sign({ access: createdUser.dataValues.access, userId: createdUser.dataValues.id }, SECRET_KEY, { expiresIn: '10d' });
+      const token = jwt.sign({ access: createdUser.dataValues.access, userId: createdUser.dataValues.id }, SECRET_KEY, { expiresIn: '1d' });
 
       res.status(201).json({ status: 201, token: token });
     }
