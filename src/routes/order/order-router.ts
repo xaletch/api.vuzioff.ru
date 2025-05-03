@@ -4,8 +4,8 @@ import { Router } from "express";
 
 const router = Router();
 
-router.post('/order', orderController.create);
-router.get('/order', auth, orderController.all);
-router.patch('/order/:orderId/status', auth, orderController.updateStatus);
+router.post('/orders', orderController.create);
+router.get('/orders', auth, orderController.all);
+router.patch('/orders/:orderId/status', auth, orderController.updateStatus);
 
 export default router;
